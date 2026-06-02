@@ -127,7 +127,7 @@ A comprehensive, non-technical breakdown of the architectural evolution of Artif
 
 ---
 
-## 📈 The 3 Levels of AI Architecture
+## The 3 Levels of AI Architecture
 
 AI systems are generally divided into three distinct operational layers based on their autonomy and decision-making capabilities.
 
@@ -151,7 +151,7 @@ AI systems are generally divided into three distinct operational layers based on
 
 ---
 
-## ⚖️ Architecture Comparison
+## Architecture Comparison
 
 | Feature | Level 1: LLM | Level 2: AI Workflow | Level 3: AI Agent |
  | :--- | :--- | :--- | :--- |
@@ -162,7 +162,7 @@ AI systems are generally divided into three distinct operational layers based on
 
 ---
 
-## 🔄 Core Framework: ReAct (Reason + Act)
+## Core Framework: ReAct (Reason + Act)
 
 The dominant engineering pattern for building autonomous AI agents relies on a continuous loop of reasoning, executing, and observing.
 
