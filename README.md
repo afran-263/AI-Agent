@@ -53,22 +53,22 @@ In simple terms, a **chatbot talks**, a **RAG system searches and answers**, and
 
 AI agents are built using several core components that enable them to understand tasks, make decisions, and perform actions effectively.
 
-**1. Prompt**
+**1. Prompt :**
  The prompt is the set of instructions or input given to the AI agent. It defines the task, goals, and context, guiding the agent on what it needs to do.
 
-**2. Model**
+**2. Model :**
  The model is the intelligence behind the agent. It processes information, understands language, reasons about problems, and generates responses or decisions based on the given input.
 
-**3. Tools**
+**3. Tools :**
  Tools allow the agent to interact with external systems and perform actions beyond its built-in capabilities. Examples include web search, databases, calculators, APIs, and business applications.
 
-**4. Memory**
+**4. Memory :**
  Memory enables the agent to store and recall important information. It helps the agent remember previous interactions, user preferences, and task-related details, making its responses more accurate and personalized.
 
-**5. Evaluation**
+**5. Evaluation :**
  Evaluation measures how well the agent performs its tasks. It helps identify errors, assess the quality of responses, and ensure that the agent is achieving its intended goals effectively.
 
-**6. Logging**
+**6. Logging :**
  Logging involves recording the agent’s activities, decisions, and interactions. These records help developers monitor performance, troubleshoot issues, improve reliability, and maintain transparency.
 
 ### How an AI Agent Works
