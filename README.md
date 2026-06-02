@@ -43,9 +43,15 @@ Chatbots, RAG systems, and AI agents are all AI-powered technologies, but they d
 
 #### Summary
 
-* **Chatbot:** Best for answering questions and having conversations.
- * **RAG System:** Best for providing accurate answers using external documents or knowledge bases.
- * **AI Agent:** Best for performing tasks, making decisions, using tools, and achieving goals with minimal human intervention.
+* **Chatbot:**
+ A chatbot responds to user prompts using the knowledge it was trained on or predefined rules. It mainly focuses on answering questions and having conversations but usually cannot access new information or perform actions.
+
+* **RAG (Retrieval-Augmented Generation):**
+ A RAG system responds to user prompts by first searching relevant documents, files, databases, or knowledge sources. It then uses the retrieved information to generate a more accurate and up-to-date response.
+
+* **AI Agent:**
+ An AI agent goes beyond answering questions. It understands the user's request, plans the required steps, uses tools or external systems if needed, and takes actions to complete the task autonomously. It can also remember information, make decisions, and adapt based on feedback.
+ In simple terms, a **chatbot talks**, a **RAG system searches and answers**, and an **AI agent thinks, plans, and acts**.
 
 In simple terms, a **chatbot talks**, a **RAG system searches and answers**, and an **AI agent thinks, plans, and acts**.
 
