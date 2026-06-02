@@ -70,3 +70,36 @@ AI agents are built using several core components that enable them to understand
 
 **6. Logging**
  Logging involves recording the agent’s activities, decisions, and interactions. These records help developers monitor performance, troubleshoot issues, improve reliability, and maintain transparency.
+
+### How an AI Agent Works
+
+An AI agent works by continuously observing, thinking, and taking actions to achieve a specific goal. Unlike a traditional chatbot that only responds to questions, an AI agent can plan tasks, use tools, remember information, and make decisions independently.
+
+The working process of an AI agent typically follows these steps:
+
+1. **Receive a Goal or Instruction**
+ The agent starts by receiving a task or goal from the user, such as scheduling a meeting, generating a report, or answering a question.
+
+2. **Understand and Analyze the Request**
+ Using its AI model, the agent interprets the user's request, identifies the objective, and determines what information is needed.
+
+3. **Gather Information**
+ The agent collects relevant data from available sources such as databases, documents, websites, APIs, or previous interactions stored in memory.
+
+4. **Plan the Actions**
+ The agent creates a step-by-step plan to accomplish the goal. It evaluates different options and selects the most effective approach.
+
+5. **Use Tools and Take Actions**
+ The agent may use external tools, applications, or services to perform tasks. For example, it can search the web, send emails, update records, or generate documents.
+
+6. **Evaluate Results**
+ After completing an action, the agent checks whether the result meets the intended goal. If necessary, it adjusts its plan and tries a different approach.
+
+7. **Learn and Improve**
+ The agent can store useful information, learn from feedback, and improve its future performance over time.
+
+### Simple Workflow
+
+**User Request → Understand → Gather Information → Plan → Act → Evaluate → Deliver Result**
+
+This cycle enables AI agents to solve problems, automate workflows, and complete complex tasks with minimal human involvement.
