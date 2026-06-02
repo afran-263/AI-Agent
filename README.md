@@ -41,7 +41,7 @@ Chatbots, RAG systems, and AI agents are all AI-powered technologies, but they d
  | **Tool Usage** | Rarely uses external tools. | Uses retrieval systems to access external knowledge. | Uses multiple tools, APIs, databases, and applications. |
  | **Example** | Customer support chatbot answering FAQs. | Company knowledge assistant searching internal documents. | Personal assistant that plans trips, schedules meetings, and automates workflows. |
 
-### Summary
+#### Summary
 
 * **Chatbot:** Best for answering questions and having conversations.
  * **RAG System:** Best for providing accurate answers using external documents or knowledge bases.
