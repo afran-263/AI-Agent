@@ -1,5 +1,9 @@
 # AI-Agent
 
+## Introduction
+
+This document explains AI agents, their working, components, and how they differ from chatbots and RAG systems in a simple and structured way.
+
 AI agents are intelligent software programs that can perform tasks and achieve goals on behalf of users. Unlike traditional software, AI agents can think through problems, plan actions, remember information, and make decisions with a certain level of independence. They can also learn from experience and adapt to new situations over time.
 
 AI agents are powered by advanced AI models that can understand and process different types of information, such as text, voice, images, videos, audio, and even computer code. This ability allows them to interact naturally with users, analyze information, solve problems, and carry out tasks effectively.
@@ -107,3 +111,7 @@ The working process of an AI agent typically follows these steps:
 #### Simple Workflow
 
 **User Request → Understand → Gather Information → Plan → Act → Evaluate → Deliver Result**
+
+## Conclusion
+
+AI agents represent an evolution of traditional AI systems by combining reasoning, planning, tool usage, and memory. Unlike chatbots and RAG systems, they can independently execute tasks and automate workflows, making them suitable for real-world business applications.
