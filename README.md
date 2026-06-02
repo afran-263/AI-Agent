@@ -77,29 +77,27 @@ An AI agent works by continuously observing, thinking, and taking actions to ach
 
 The working process of an AI agent typically follows these steps:
 
-1. **Receive a Goal or Instruction**
+1. **Receive a Goal or Instruction :**
  The agent starts by receiving a task or goal from the user, such as scheduling a meeting, generating a report, or answering a question.
 
-2. **Understand and Analyze the Request**
+2. **Understand and Analyze the Request :**
  Using its AI model, the agent interprets the user's request, identifies the objective, and determines what information is needed.
 
-3. **Gather Information**
+3. **Gather Information :**
  The agent collects relevant data from available sources such as databases, documents, websites, APIs, or previous interactions stored in memory.
 
-4. **Plan the Actions**
+4. **Plan the Actions :**
  The agent creates a step-by-step plan to accomplish the goal. It evaluates different options and selects the most effective approach.
 
-5. **Use Tools and Take Actions**
+5. **Use Tools and Take Actions :**
  The agent may use external tools, applications, or services to perform tasks. For example, it can search the web, send emails, update records, or generate documents.
 
-6. **Evaluate Results**
+6. **Evaluate Results :**
  After completing an action, the agent checks whether the result meets the intended goal. If necessary, it adjusts its plan and tries a different approach.
 
-7. **Learn and Improve**
+7. **Learn and Improve :**
  The agent can store useful information, learn from feedback, and improve its future performance over time.
 
 ### Simple Workflow
 
 **User Request → Understand → Gather Information → Plan → Act → Evaluate → Deliver Result**
-
-This cycle enables AI agents to solve problems, automate workflows, and complete complex tasks with minimal human involvement.
