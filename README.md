@@ -4,7 +4,7 @@
 
 This document explains AI agents, their working, components, and how they differ from chatbots and RAG systems in a simple and structured way.
 
-## Project Structure
+## Folder Structure
 ```
 AI Agent/
 ├── README.md
