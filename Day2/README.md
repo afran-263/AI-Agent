@@ -118,49 +118,6 @@ The agent MUST obtain explicit user confirmation before executing any of these o
 6. **Await Confirmation:** Block execution until user confirms
 7. **Log the Decision:** Record who authorized the change and when
 
-**Confirmation Message Example:**
-### 1. **agent-behaviour-rules.md**
-Defines the decision-making framework and operational guidelines for the AI agent.
-
-**Key Topics:**
-- Core thinking behavior and intent understanding
-- Decision-making rules for tool selection
-- Action execution protocols with confirmation requirements
-- Tool usage best practices
-- Safety and restriction behavior
-- Error handling and communication standards
-- Task flow discipline for consistent execution
-
-**Purpose:** Ensures the agent behaves deterministically, safely, and consistently across all operations.
-
-### 2. **system-prompt-v1.md**
-The foundational instruction set that describes the agent's role, scope, and operational constraints.
-
-**Key Topics:**
-- Role definition as an HRMS AI Agent
-- Core behavior rules and step-by-step execution plan
-- Tool usage guidelines and selection criteria
-- Confirmation policy for critical write operations
-- Unsafe action refusal protocols
-- Handling missing information
-- Example workflows and output formats
-
-**Purpose:** Provides the complete rulebook that guides the agent's overall behavior and decision-making.
-
-### 3. **unsafe-actions.md**
-Comprehensive list of operations the agent is strictly prohibited from performing.
-
-**Key Topics:**
-- Data privacy violations
-- Unauthorized system modifications
-- Authentication and security bypass attempts
-- Prompt injection and instruction manipulation
-- External system abuse
-- Financial and payroll restrictions
-- Factual fabrication prohibitions
-- Escalation requirements for sensitive actions
-
-**Purpose:** Protects system integrity, data security, and organizational compliance by defining hard boundaries.
 
 ---
 
