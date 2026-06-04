@@ -6,7 +6,7 @@ AI Agent/
 ├── README.md
 └── docs/
     ├── system-prompt-v1.md
-    ├── agent-rules.md
+    ├── agent-behaviour-rules.md
     └── unsafe-actions.md
 ```
 ### 1. **agent-behaviour-rules.md**
