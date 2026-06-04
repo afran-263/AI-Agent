@@ -97,6 +97,37 @@ A complete tool schema typically contains:
   "approval_required": false
 }
 ```
+* An **input schema** defines the structure of data a tool expects to receive before it can execute.
+  
+Example
+
+Tool: get_employee
+```json
+{
+  "type": "object",
+  "properties": {
+    "employee_id": {
+      "type": "string"
+    }
+  },
+  "required": ["employee_id"]
+}
+```
+* An **output schema** defines the structure of data returned by the tool after execution.
+
+Example
+
+Tool: get_employee
+```
+{
+  "type": "object",
+  "properties": {
+    "employee_id": { "type": "string" },
+    "name": { "type": "string" },
+    "department": { "type": "string" }
+  }
+}
+```
 ---
 
 ## API-to-Tool Mapping
