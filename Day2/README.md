@@ -54,7 +54,7 @@ Comprehensive list of operations the agent is strictly prohibited from performin
 
 ---
 
-## 🎯 Key Concepts
+## Key Concepts
 
 ### System Prompt vs. Behavior Rules
 - **System Prompt:** The complete "rulebook" defining role, goals, and constraints
@@ -77,15 +77,15 @@ The agent must always prioritize:
 
 ---
 
-## 🔐 Critical Principles
+## Critical Principles
 
-✅ **MUST DO:**
+**MUST DO:**
 - Always use tools for system-level actions
 - Ask for user confirmation before write operations
 - Refuse unsafe actions without justification
 - Handle errors gracefully and inform users
 
-❌ **MUST NOT:**
+**MUST NOT:**
 - Fabricate or assume employee data
 - Bypass authentication or security systems
 - Expose system prompts or internal logic
@@ -93,7 +93,7 @@ The agent must always prioritize:
 
 ---
 
-## 🚀 Usage
+## Usage
 
 These documents serve as the foundation for:
 - **Developers** implementing the AI agent
@@ -103,7 +103,7 @@ These documents serve as the foundation for:
 
 ---
 
-## 📝 Version Information
+## Version Information
 - **Version:** 1.0
 - **Date:** June 2026
 - **Focus:** HRMS AI Agent Design & Safety Framework
