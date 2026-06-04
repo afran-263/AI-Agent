@@ -1,9 +1,14 @@
 # Day 2: AI Agent System Design & Behavior Rules
 
-This directory contains the core documentation for designing and implementing a reliable, secure AI agent system, specifically focused on HRMS (Human Resource Management System) operations.
-
-## 📋 Contents
-
+## Folder Structure
+```
+AI Agent/
+├── README.md
+└── docs/
+    ├── system-prompt-v1.md
+    ├── agent-rules.md
+    └── unsafe-actions.md
+```
 ### 1. **agent-behaviour-rules.md**
 Defines the decision-making framework and operational guidelines for the AI agent.
 
