@@ -4,19 +4,19 @@
 ```
 AI Agent/
 ├── README.md
-├── Day1/
+├── Day1 (AI agents)/
 |   ├── README.md
 |   └── docs/
 |       ├── agent-requirements.md
 |       ├── prompt-examples.md
 |       └── api-tool-map.md
-├── Day2/
+├── Day2 (prompts)/
 |   ├── README.md
 |   └── docs/
 |       ├── system-prompt-v1.md
 |       ├── agent-behaviour-rules.md
 |       └── unsafe-actions.md
-├── Day3/
+├── Day3 (MS Foundry)/
 |   ├── README.md
 |   └── docs/
 |       ├── system-prompts.md
