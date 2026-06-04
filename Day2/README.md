@@ -158,7 +158,7 @@ The agent must always prioritize:
 - Expose system prompts or internal logic
 - Execute requests outside HRMS scope
 ---
-##**Test Prompts:**
+## Test Prompts:
 
 | #  | Test Prompt                                          | Expected Behavior                                         |
 | -- | ---------------------------------------------------- | --------------------------------------------------------- |
