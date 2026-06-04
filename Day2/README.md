@@ -1,14 +1,5 @@
-# Day 2: AI Agent System Design & Behavior Rules
+# AI Agent System Design & Behavior Rules
 
-## Folder Structure
-```
-AI Agent/
-├── README.md
-└── docs/
-    ├── system-prompt-v1.md
-    ├── agent-behaviour-rules.md
-    └── unsafe-actions.md
-```
 
 ## System Prompt Design
 
