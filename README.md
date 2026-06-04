@@ -4,10 +4,21 @@
 ```
 AI Agent/
 ├── README.md
-└── docs/
-    ├── agent-requirements.md
-    ├── prompt-examples.md
-    └── api-tool-map.md
+├── Day1
+|   └── docs/
+|       ├── agent-requirements.md
+|       ├── prompt-examples.md
+|       └── api-tool-map.md
+├── Day2
+|   └── docs/
+|       ├── agent-requirements.md
+|       ├── prompt-examples.md
+|       └── api-tool-map.md
+├── Day3
+    └── docs/
+        ├── agent-requirements.md
+        ├── prompt-examples.md
+        └── api-tool-map.md
 ```
 AI agents are intelligent software programs that can perform tasks and achieve goals on behalf of users. Unlike traditional software, AI agents can think through problems, plan actions, remember information, and make decisions with a certain level of independence. They can also learn from experience and adapt to new situations over time.
 
