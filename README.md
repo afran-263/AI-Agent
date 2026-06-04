@@ -17,8 +17,11 @@ AI Agent/
 |       ├── agent-behaviour-rules.md
 |       └── unsafe-actions.md
 ├── Day3/
-    ├── README.md
-    └── docs/
+|   ├── README.md
+|   └── docs/
+|       ├── system-prompts.md
+|       ├── Limitations.md
+|       └── test.md
        
 ```
 AI agents are intelligent software programs that can perform tasks and achieve goals on behalf of users. Unlike traditional software, AI agents can think through problems, plan actions, remember information, and make decisions with a certain level of independence. They can also learn from experience and adapt to new situations over time.
