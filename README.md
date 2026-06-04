@@ -11,9 +11,9 @@ AI Agent/
 |       └── api-tool-map.md
 ├── Day2
 |   └── docs/
-|       ├── agent-requirements.md
-|       ├── prompt-examples.md
-|       └── api-tool-map.md
+|       ├── system-prompt-v1.md
+|       ├── agent-behaviour-rules.md
+|       └── unsafe-actions.md
 ├── Day3
     └── docs/
         ├── agent-requirements.md
