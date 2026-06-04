@@ -28,6 +28,7 @@ AI Agent/
 |       ├── tool-design.md
 |       ├── hrms-api-tool-map.md
 |       └── tool-safety-rules.md
+
 AI agents are intelligent software programs that can perform tasks and achieve goals on behalf of users. Unlike traditional software, AI agents can think through problems, plan actions, remember information, and make decisions with a certain level of independence. They can also learn from experience and adapt to new situations over time.
 
 AI agents are powered by advanced AI models that can understand and process different types of information, such as text, voice, images, videos, audio, and even computer code. This ability allows them to interact naturally with users, analyze information, solve problems, and carry out tasks effectively.
