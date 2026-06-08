@@ -18,15 +18,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 1 — GetEmployeeList
-    //  Azure Foundry will call this when the agent needs a staff list
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Get a list of all employees. Optionally filter by department or status.
-    /// </summary>
-    /// <param name="department">Filter by department name (e.g. Engineering, HR, Finance)</param>
-    /// <param name="status">Filter by employment status (Active, On Leave, Inactive)</param>
-    /// <returns>List of employees with basic details</returns>
     [HttpGet("employees")]
     [ProducesResponseType(typeof(ApiResponse<List<EmployeeSummary>>), 200)]
     public IActionResult GetEmployeeList(
@@ -48,14 +41,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 2 — GetEmployeeDetails
-    //  Called when agent needs full profile for a specific employee
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Get complete details for a specific employee by their ID.
-    /// </summary>
-    /// <param name="id">The unique employee ID (e.g. 1, 2, 3 …)</param>
-    /// <returns>Full employee profile including department, salary, manager and contact info</returns>
     [HttpGet("employees/{id:int}")]
     [ProducesResponseType(typeof(ApiResponse<Employee>), 200)]
     [ProducesResponseType(typeof(ApiResponse<Employee>), 404)]
@@ -85,16 +72,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 3 — GetTaskList
-    //  Called when agent needs tasks (all tasks or per employee)
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Get tasks. Pass an employeeId to get tasks for a specific employee, or leave empty for all tasks.
-    /// </summary>
-    /// <param name="employeeId">Optional: filter tasks by employee ID</param>
-    /// <param name="status">Optional: filter by task status (Pending, In Progress, Completed, On Hold)</param>
-    /// <param name="priority">Optional: filter by priority (High, Medium, Low)</param>
-    /// <returns>List of tasks with title, description, priority, status and due date</returns>
     [HttpGet("tasks")]
     [ProducesResponseType(typeof(ApiResponse<List<TaskItem>>), 200)]
     public IActionResult GetTaskList(
@@ -146,12 +125,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 4 — CreateTask
-    //  Called when agent needs to create a new task and assign it to an employee
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Create a new task and assign it to an employee.
-    /// </summary>
     [HttpPost("tasks")]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 201)]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 400)]
@@ -207,12 +182,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 5 — AssignTask
-    //  Called when agent needs to reassign an existing task to a different employee
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Assign an existing task to another employee.
-    /// </summary>
     [HttpPut("tasks/{taskId:int}/assign")]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 200)]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 400)]
@@ -265,12 +236,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 6 — UpdateTaskStatus
-    //  Called when agent needs to change the status of an existing task
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Update the status of an existing task.
-    /// </summary>
     [HttpPut("tasks/{taskId:int}/status")]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 200)]
     [ProducesResponseType(typeof(ApiResponse<TaskItem>), 400)]
@@ -311,16 +278,8 @@ public class HrmsController : ControllerBase
 
     // ─────────────────────────────────────────────────────────────────
     //  TOOL 7 — MarkAttendance
-    //  Called when agent needs to log attendance for an employee
     // ─────────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Get attendance records. Optionally filter by employee, date, or status.
-    /// </summary>
-    /// <param name="employeeId">Optional employee ID to filter by</param>
-    /// <param name="date">Optional date (YYYY-MM-DD) to filter by</param>
-    /// <param name="status">Optional attendance status (Present, Absent, Remote, Leave)</param>
-    /// <returns>List of attendance records</returns>
     [HttpGet("attendance")]
     [ProducesResponseType(typeof(ApiResponse<List<AttendanceRecord>>), 200)]
     public IActionResult GetAttendanceList(
