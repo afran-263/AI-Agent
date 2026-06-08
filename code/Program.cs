@@ -7,8 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ======================================================
 // LOGGING CONFIGURATION
-// Note: Console logging captures all levels (Info, Warning, Error)
-// Errors are logged with ✗ prefix, Responses with ✓ prefix
 // ======================================================
 
 builder.Logging.ClearProviders();
@@ -38,7 +36,6 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Provides employee and task data tools for Azure AI Foundry Agent"
     });
 
-    // IMPORTANT FOR AZURE AI FOUNDRY
     options.CustomOperationIds(api =>
     {
         return api.ActionDescriptor.RouteValues["action"];
@@ -63,8 +60,6 @@ var app = builder.Build();
 
 // ======================================================
 // ERROR HANDLING & REQUEST LOGGING MIDDLEWARE
-// Note: Catches unhandled exceptions and logs all requests/responses
-// Status indicator: ✓ for success, ✗ for errors
 // ======================================================
 
 app.Use(async (context, next) =>
