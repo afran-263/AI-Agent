@@ -2,10 +2,6 @@ using HrmsAgentApi.Models;
 
 namespace HrmsAgentApi.Services;
 
-/// <summary>
-/// In-memory data service simulating an HRMS database.
-/// Replace the lists below with real DB/API calls in production.
-/// </summary>
 public class HrmsDataService
 {
     private readonly List<Employee> _employees;
@@ -158,7 +154,7 @@ public class HrmsDataService
     }
 
     // ─────────────────────────────────────────────
-    //  SEED DATA  – replace with real DB later
+    //  SEED DATA 
     // ─────────────────────────────────────────────
 
     private static List<Employee> SeedEmployees() => new()
