@@ -1,175 +1,179 @@
-# AI Agent Tool Workflow
 
-The HRMS Agent uses tools generated from the OpenAPI specification. These tools allow the AI agent to retrieve real employee and task data instead of generating responses from memory.
 
-## Available Tools
+# AI Agent Write Tool Workflow
 
-### 1. GetEmployeeList
+## Purpose
+
+The Write Tool allows the HRMS AI Agent to create new records in the HRMS system instead of only retrieving information.
+
+Unlike read tools such as `GetEmployeeDetails` or `GetTaskList`, a write tool modifies data by creating, updating, or deleting records.
+
+---
+
+## Example Write Tool
+
+### CreateTask
 
 **Purpose**
 
-Retrieves a list of employees from the HRMS system.
+Create a new task and assign it to an employee.
 
-**API Endpoint**
+### API Endpoint
 
 ```http
-GET /api/hrms/employees
+POST /api/hrms/tasks
 ```
 
-**Example User Prompt**
+### Tool Schema
 
-```text
-List all employees
+```json
+{
+  "employeeId": "integer",
+  "title": "string",
+  "description": "string",
+  "priority": "string",
+  "status": "string",
+  "dueDate": "string",
+  "assignedBy": "string",
+  "category": "string"
+}
 ```
 
-**Agent Workflow**
+### Example Tool Call
 
-```text
-User Prompt
-      │
-      ▼
-Agent selects GetEmployeeList tool
-      │
-      ▼
-GET /api/hrms/employees
-      │
-      ▼
-HrmsController.GetEmployeeList()
-      │
-      ▼
-HrmsDataService.GetAllEmployees()
-      │
-      ▼
-Employee Data Returned
-      │
-      ▼
-Agent formats response
+```json
+{
+  "employeeId": 1,
+  "title": "Implement Employee Attendance Dashboard",
+  "description": "Develop dashboard for attendance tracking.",
+  "priority": "High",
+  "status": "Pending",
+  "dueDate": "2026-07-15",
+  "assignedBy": "Priya Menon",
+  "category": "Development"
+}
 ```
 
 ---
 
-### 2. GetEmployeeDetails
+## Agent Workflow
 
-**Purpose**
+### User Prompt
 
-Retrieves detailed information about a specific employee using the employee ID.
+```text
+Create a high-priority task for employee 1 to implement an attendance dashboard.
+```
 
-**API Endpoint**
+### Step 1 – Agent Understands Intent
+
+The AI Agent determines that the user wants to create a new task.
+
+```text
+Intent: Create Task
+```
+
+### Step 2 – Agent Selects Tool
+
+```text
+Tool Selected:
+CreateTask
+```
+
+### Step 3 – Agent Extracts Parameters
+
+```json
+{
+  "employeeId": 1,
+  "title": "Implement Employee Attendance Dashboard",
+  "priority": "High"
+}
+```
+
+### Step 4 – Tool Executes API
 
 ```http
-GET /api/hrms/employees/{id}
+POST /api/hrms/tasks
 ```
 
-**Example User Prompt**
+Request Body:
 
-```text
-Show details of employee 1
+```json
+{
+  "employeeId": 1,
+  "title": "Implement Employee Attendance Dashboard",
+  "description": "Develop dashboard for attendance tracking.",
+  "priority": "High",
+  "status": "Pending",
+  "dueDate": "2026-07-15",
+  "assignedBy": "Priya Menon",
+  "category": "Development"
+}
 ```
 
-**Agent Workflow**
+### Step 5 – Controller Executes
+
+```csharp
+CreateTask(CreateTaskRequest request)
+```
+
+### Step 6 – Service Saves Data
+
+```csharp
+_dataService.AddTask(task);
+```
+
+### Step 7 – API Returns Response
+
+```json
+{
+  "success": true,
+  "message": "Task created successfully.",
+  "taskId": 111
+}
+```
+
+### Step 8 – Agent Responds
 
 ```text
-User Prompt
-      │
-      ▼
-Agent identifies Employee ID = 1
-      │
-      ▼
-Selects GetEmployeeDetails tool
-      │
-      ▼
-GET /api/hrms/employees/1
-      │
-      ▼
-HrmsController.GetEmployeeDetails(1)
-      │
-      ▼
-HrmsDataService.GetEmployeeById(1)
-      │
-      ▼
-Employee Object Returned
-      │
-      ▼
-Agent generates natural language response
+Task created successfully.
+
+Task ID: 111
+Title: Implement Employee Attendance Dashboard
+Assigned To: Arjun Nair
+Priority: High
+Due Date: 2026-07-15
 ```
 
 ---
 
-### 3. GetTaskList
-
-**Purpose**
-
-Retrieves task information from the HRMS system.
-
-**API Endpoint**
-
-```http
-GET /api/hrms/tasks
-```
-
-**Example User Prompt**
-
-```text
-Show tasks assigned to employee 1
-```
-
-**Agent Workflow**
+## End-to-End Flow
 
 ```text
 User Prompt
       │
       ▼
-Agent selects GetTaskList tool
+AI Agent
       │
       ▼
-GET /api/hrms/tasks?employeeId=1
+Select CreateTask Tool
       │
       ▼
-HrmsController.GetTaskList()
+POST /api/hrms/tasks
       │
       ▼
-HrmsDataService.GetTasks()
+Controller
       │
       ▼
-Task Data Returned
+Service Layer
       │
       ▼
-Agent summarizes tasks
-```
-
----
-
-# End-to-End Tool Execution Flow
-
-```text
-User Prompt
-      │
-      ▼
-Azure AI Foundry Agent
-      │
-      ▼
-Tool Selection
-      │
-      ▼
-OpenAPI Tool Definition
-      │
-      ▼
-HTTP API Request
-      │
-      ▼
-ASP.NET Controller
-      │
-      ▼
-HRMS Data Service
-      │
-      ▼
-Seed Data
+Database / Data Store
       │
       ▼
 JSON Response
       │
       ▼
-Agent Formats Response
+AI Agent
       │
       ▼
 User
@@ -177,44 +181,14 @@ User
 
 ---
 
-# How the Agent Discovers Tools
+## Read Tool vs Write Tool
 
-The tools are automatically generated from the OpenAPI specification
-
-Each API operation contains an `operationId`.
-
-Example:
-
-```json
-{
-  "operationId": "GetEmployeeDetails"
-}
-```
-
-Azure AI Foundry converts this operation into an AI Tool:
-
-```text
-Tool Name:
-GetEmployeeDetails
-```
-
-When a user asks:
-
-```text
-What is the name of employee 1?
-```
-
-The agent:
-
-1. Selects the **GetEmployeeDetails** tool.
-2. Extracts `id = 1`.
-3. Calls:
-
-```http
-GET /api/hrms/employees/1
-```
-
-4. Receives employee data.
-5. Generates the final response.
+| Type       | Example            | HTTP Method | Purpose       |
+| ---------- | ------------------ | ----------- | ------------- |
+| Read Tool  | GetEmployeeDetails | GET         | Retrieve data |
+| Read Tool  | GetTaskList        | GET         | Retrieve data |
+| Write Tool | CreateTask         | POST        | Create data   |
+| Write Tool | UpdateTask         | PUT         | Update data   |
+| Write Tool | DeleteTask         | DELETE      | Remove data   |
 
 ---
