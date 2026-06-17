@@ -74,5 +74,3 @@ GET  /api/profile      → requires Authorization: Bearer <token>
 - [x] Separate secrets per environment (dev / staging / prod)
 - [x] No secrets logged, even partially
 ````
- 
----
