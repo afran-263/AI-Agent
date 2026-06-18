@@ -1,8 +1,7 @@
 # Voyon HRMS AI Agent — Authenticated Tool Call Walkthrough
 
 > **Scope:** A single end-to-end request — user asks "What is my leave balance?" — traced from
-> browser to HRMS and back.  
-> **Captured:** 2026-06-17 · All tokens redacted · Build: `net8.0` Debug
+> browser to HRMS and back.
 
 ---
 
