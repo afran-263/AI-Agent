@@ -1,0 +1,537 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "HRMS Agent API",
+    "description": "Proxies Voyon Folks HRMS attendance data to Azure AI Foundry Agent tools. All data is fetched live from Voyon using a pre-issued Bearer token.",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/hrms/attendance/team": {
+      "get": {
+        "tags": [
+          "Attendance"
+        ],
+        "summary": "Get full team attendance report for a manager on a specific date.",
+        "description": "Returns present/absent/leave/weekly-off counts and per-employee details.\r\nSource: GET /m/api/Attendance/team-attendance on Voyon Folks HRMS.",
+        "operationId": "GetTeamAttendance",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reportingType",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamAttendanceDtoApiResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hrms/attendance/absent": {
+      "get": {
+        "tags": [
+          "Attendance"
+        ],
+        "summary": "Get employees who are absent (not on leave) on a given date.",
+        "description": "Fetches team-attendance and filters isAbsent=true, isLeave=false, isWeeklyOff=false.",
+        "operationId": "GetAbsentEmployees",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAttendanceDtoListApiResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hrms/attendance/present": {
+      "get": {
+        "tags": [
+          "Attendance"
+        ],
+        "summary": "Get employees who have checked in on a given date.",
+        "description": "Fetches team-attendance and filters for employees where checkinTime is not null.",
+        "operationId": "GetPresentEmployees",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeAttendanceDtoListApiResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hrms/attendance/mark": {
+      "post": {
+        "tags": [
+          "Attendance"
+        ],
+        "operationId": "MarkAttendance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkAttendanceRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkAttendanceRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkAttendanceRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkAttendanceResultDtoApiResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjectApiResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmployeeAttendanceDto": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "shiftStartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "shiftEndTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "workedHours": {
+            "type": "string",
+            "nullable": true
+          },
+          "breakHours": {
+            "type": "string",
+            "nullable": true
+          },
+          "leaveHours": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkOutTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "leaveStartDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "leaveToDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInLatitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInLongitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkOutLatitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkOutLongitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkOutLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmployeeAttendanceDtoListApiResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeAttendanceDto"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MarkAttendanceRequestDto": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInCheckOutTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendanceDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shiftId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isCheckInorCheckOut": {
+            "type": "string",
+            "description": "Must be \"CheckIn\" for Check-In or \"CheckOut\" for Check-Out. Also accepts \"CI\"/\"CO\" and case-insensitive variants.",
+            "nullable": true
+          },
+          "checkInLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "checkOutLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "checkInLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "checkOutLongitude": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Agent-facing request to mark attendance for an employee.\r\nSupply either EmployeeId (int) OR UserName (partial name string) to identify the employee.\r\nThe manager ID is hardcoded as 34110 — do NOT ask the user for it.\r\nCompanyId is hardcoded as 389 and ShiftId as 0 — do NOT ask the user for them.\r\nIsCheckInorCheckOut: \"CheckIn\" = Check-In, \"CheckOut\" = Check-Out.\r\n  Also accepts \"CI\", \"checkin\", \"check-in\" (→ CheckIn) and \"CO\", \"checkout\", \"check-out\" (→ CheckOut).\r\n  Defaults to \"CheckIn\" if omitted.\r\nAttendanceDate and CheckInCheckOutTime default to today/now if not provided."
+      },
+      "MarkAttendanceResultDto": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "employeeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "attendanceDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkInCheckOutTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "type": "string",
+            "nullable": true
+          },
+          "voyonMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Result returned to the agent after marking attendance."
+      },
+      "MarkAttendanceResultDtoApiResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/MarkAttendanceResultDto"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ObjectApiResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TeamAttendanceDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "managerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reportedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "absentCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "onLeaveCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "onWeeklyOffCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeAttendanceDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TeamAttendanceDtoApiResponseDto": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/TeamAttendanceDto"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Attendance"
+    }
+  ]
+}
