@@ -21,7 +21,6 @@
 | **Expected parameters** | `{"date": "2026-06-19"}` |
 | **Actual parameters** | `{"date": "2026-06-19"}` (✓) |
 | **Answer** | Here is the result for your query. present employee |
-| **Response keywords** | `present, employee` (✓) |
 
 ### Case 2 — absent_query [PASS]
 
@@ -37,7 +36,6 @@
 | **Expected parameters** | `{"date": "2026-06-19"}` |
 | **Actual parameters** | `{"date": "2026-06-19"}` (✓) |
 | **Answer** | Here is the result for your query. absent |
-| **Response keywords** | `absent` (✓) |
 
 ### Case 3 — absent_query [PASS]
 
@@ -53,7 +51,6 @@
 | **Expected parameters** | `{"date": "2026-06-15"}` |
 | **Actual parameters** | `{"date": "2026-06-15"}` (✓) |
 | **Answer** | Here is the result for your query. absent June 15 |
-| **Response keywords** | `absent, June 15` (✓) |
 
 ### Case 4 — summary_query [PASS]
 
@@ -69,7 +66,6 @@
 | **Expected parameters** | `{"date": "2026-06-19"}` |
 | **Actual parameters** | `{"date": "2026-06-19"}` (✓) |
 | **Answer** | Here is the result for your query. present absent total |
-| **Response keywords** | `present, absent, total` (✓) |
 
 ### Case 5 — summary_query [PASS]
 
@@ -85,7 +81,6 @@
 | **Expected parameters** | `{"date": "2026-06-15"}` |
 | **Actual parameters** | `{"date": "2026-06-15"}` (✓) |
 | **Answer** | Here is the result for your query. summary |
-| **Response keywords** | `summary` (✓) |
 
 ### Case 6 — history_query [PASS]
 
@@ -102,7 +97,6 @@
 | **Actual parameters** | `{"month": 6, "year": 2026}` (✓) |
 | **Tool arguments** | `{"get_attendance_history": {"month": 6, "year": 2026}}` |
 | **Answer** | Processed your request. attendance month |
-| **Response keywords** | `attendance, month` (✓) |
 
 ### Case 7 — history_query [PASS]
 
@@ -119,7 +113,6 @@
 | **Actual parameters** | `{"month": 5, "year": 2026, "employee_id": 42}` (✓) |
 | **Tool arguments** | `{"get_attendance_history": {"month": 5, "year": 2026, "employee_id": 42}}` |
 | **Answer** | Processed your request. May 2026 |
-| **Response keywords** | `May, 2026` (✓) |
 
 ### Case 8 — history_query [PASS]
 
@@ -136,7 +129,6 @@
 | **Actual parameters** | `{"employee_name": "Greeshma", "month": 6, "year": 2026}` (✓) |
 | **Tool arguments** | `{"get_attendance_history": {"month": 6, "year": 2026, "employee_name": "Greeshma"}}` |
 | **Answer** | Processed your request. Greeshma present absent |
-| **Response keywords** | `Greeshma, present, absent` (✓) |
 
 ### Case 9 — search_employee [PASS]
 
@@ -153,7 +145,6 @@
 | **Actual parameters** | `{"employee_name": "Sarah"}` (✓) |
 | **Tool arguments** | `{"search_employee": {"query": "Sarah"}}` |
 | **Answer** | Processed your request. Sarah |
-| **Response keywords** | `Sarah` (✓) |
 
 ### Case 10 — search_employee [PASS]
 
@@ -170,7 +161,6 @@
 | **Actual parameters** | `{"employee_name": "EMP042"}` (✓) |
 | **Tool arguments** | `{"search_employee": {"query": "EMP042"}}` |
 | **Answer** | Processed your request. EMP042 |
-| **Response keywords** | `EMP042` (✓) |
 
 ### Case 11 — my_attendance [PASS]
 
@@ -186,7 +176,6 @@
 | **Expected parameters** | `{"date": "2026-06-19"}` |
 | **Actual parameters** | `{"date": "2026-06-19"}` (✓) |
 | **Answer** | Here is the result for your query. status |
-| **Response keywords** | `status` (✓) |
 
 ### Case 12 — my_attendance [PASS]
 
@@ -202,7 +191,6 @@
 | **Expected parameters** | `{"date": "2026-06-19"}` |
 | **Actual parameters** | `{"date": "2026-06-19"}` (✓) |
 | **Answer** | Here is the result for your query. check |
-| **Response keywords** | `check` (✓) |
 
 ### Case 13 — employee_detail [PASS]
 
@@ -219,7 +207,6 @@
 | **Actual parameters** | `{"employee_name": "Greeshma", "date": "2026-06-19"}` (✓) |
 | **Tool arguments** | `{"search_employee": {"query": "Greeshma"}, "get_employee_attendance_details": {"date_str": "2026-06-19"}}` |
 | **Answer** | Processed your request. Greeshma status |
-| **Response keywords** | `Greeshma, status` (✓) |
 
 ### Case 14 — employee_detail [PASS]
 
@@ -236,7 +223,6 @@
 | **Actual parameters** | `{"employee_name": "John", "date": "2026-06-19"}` (✓) |
 | **Tool arguments** | `{"search_employee": {"query": "John"}, "get_employee_attendance_details": {"date_str": "2026-06-19"}}` |
 | **Answer** | Processed your request. check |
-| **Response keywords** | `check` (✓) |
 
 ### Case 15 — unclear [PASS]
 
@@ -252,7 +238,6 @@
 | **Expected parameters** | `{}` |
 | **Actual parameters** | `{}` (✓) |
 | **Answer** | Processed your request. clarify help ? |
-| **Response keywords** | `clarify, help, ?` (✓) |
 
 ### Case 16 — unclear [PASS]
 
@@ -268,7 +253,6 @@
 | **Expected parameters** | `{}` |
 | **Actual parameters** | `{}` (✓) |
 | **Answer** | Processed your request. which what clarify |
-| **Response keywords** | `which, what, clarify` (✓) |
 
 ### Case 17 — out_of_scope [PASS]
 
@@ -284,7 +268,6 @@
 | **Expected parameters** | `{}` |
 | **Actual parameters** | `{}` (✓) |
 | **Answer** | Processed your request. attendance scope |
-| **Response keywords** | `attendance, scope` (✓) |
 
 ### Case 18 — out_of_scope [PASS]
 
@@ -300,7 +283,6 @@
 | **Expected parameters** | `{}` |
 | **Actual parameters** | `{}` (✓) |
 | **Answer** | Processed your request. attendance scope |
-| **Response keywords** | `attendance, scope` (✓) |
 
 ### Case 19 — present_query [PASS]
 
@@ -316,7 +298,6 @@
 | **Expected parameters** | `{"date": "2026-06-18"}` |
 | **Actual parameters** | `{"date": "2026-06-18"}` (✓) |
 | **Answer** | Here is the result for your query. present yesterday |
-| **Response keywords** | `present, yesterday` (✓) |
 
 ### Case 20 — history_query [PASS]
 
@@ -333,7 +314,6 @@
 | **Actual parameters** | `{"employee_name": "John Smith"}` (✓) |
 | **Tool arguments** | `{"get_attendance_history": {"employee_name": "John Smith"}}` |
 | **Answer** | Processed your request. John Smith |
-| **Response keywords** | `John Smith` (✓) |
 
 ### Case 21 — multi_step [PASS]
 
@@ -350,7 +330,6 @@
 | **Actual parameters** | `{"employee_name": "Greeshma", "month": 6}` (✓) |
 | **Tool arguments** | `{"get_attendance_history": {"month": 6, "employee_name": "Greeshma"}}` |
 | **Answer** | Processed your request. Greeshma |
-| **Response keywords** | `Greeshma` (✓) |
 
 ### Case 22 — error_handling [PASS]
 
@@ -366,4 +345,3 @@
 | **Expected parameters** | `{"date": "2025-01-01"}` |
 | **Actual parameters** | `{"date": "2025-01-01"}` (✓) |
 | **Answer** | Here is the result for your query. no holiday present error |
-| **Response keywords** | `no, holiday, present, error` (✓) |
