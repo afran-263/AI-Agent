@@ -1,4 +1,4 @@
-# Agent Design Document — Voyon Attendance Agent
+# Agent Design Document
 
 ## 1. Purpose
 
