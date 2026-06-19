@@ -1,4 +1,4 @@
-# API Mapping Document — Voyon Attendance Agent
+# API Mapping Document
 
 ## Overview
 
@@ -168,19 +168,6 @@ Authorization: Bearer <jwt>
 GET /m/api/Attendance/AttendanceBasedOnDate?employeeId=1073&date=2026-06-19
 Authorization: Bearer <jwt>
 ```
-
----
-
-## Additional APIs Available in HrmsClient
-
-## Additional APIs Available in HrmsClient
-
-| Purpose | Method | Endpoint |
-|---------|--------|----------|
-| User status info | GET | `/m/api/Employee/user-status-info` |
-| Employee profile | GET | `/m/api/Employee/GetEmployeeDetails?employeeId={id}` |
-| All active employees | GET | `/m/api/Employee/AllActive` |
-| Attendance summary list (reports) | POST | `/AttendanceApi/attendance-summary-list` (form) |
 
 ---
 
