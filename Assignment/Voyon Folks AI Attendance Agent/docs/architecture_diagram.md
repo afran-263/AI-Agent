@@ -6,37 +6,37 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         VOYON ATTENDANCE AGENT                              │
 │                                                                             │
-│  ┌──────────────────────┐        ┌──────────────────────────────────────┐  │
+│  ┌──────────────────────┐        ┌───────────────────────────────────────┐  │
 │  │    Browser (HTML/JS) │◄──────►│         FastAPI Backend               │  │
-│  │                      │  HTTP  │  ┌──────────┐   ┌──────────────────┐ │  │
+│  │                      │  HTTP  │  ┌───────────┐   ┌──────────────────┐ │  │
 │  │  login.html          │        │  │auth_router│   │  chat_router     │ │  │
 │  │  index.html          │        │  │ /login    │   │  POST /api/chat  │ │  │
 │  │  (Jinja2 templates)  │        │  │ /logout   │   │  POST /api/chat  │ │  │
-│  └──────────────────────┘        │  └──────────┘   └────────┬─────────┘ │  │
+│  └──────────────────────┘        │  └───────────┘   └────────┬─────────┘ │  │
 │                                  └───────────────────────────┼───────────┘  │
-│                                                              │               │
-│                                                              ▼               │
+│                                                              │              │
+│                                                              ▼              │
 │  ┌───────────────────────────────────────────────────────────────────────┐  │
 │  │                    LANGGRAPH AGENT WORKFLOW                           │  │
 │  │                                                                       │  │
 │  │   START                                                               │  │
 │  │     │                                                                 │  │
 │  │     ▼                                                                 │  │
-│  │  [intent_detection]  ─── classify: present/absent/summary/history    │  │
+│  │  [intent_detection]  ─── classify: present/absent/summary/history     │  │
 │  │     │                  employee_detail/search/unclear/out_of_scope    │  │
 │  │     ▼                                                                 │  │
-│  │  [parameter_extraction] ─── extract: date, employee, month, year     │  │
+│  │  [parameter_extraction] ─── extract: date, employee, month, year      │  │
 │  │     │                                                                 │  │
 │  │     ▼                                                                 │  │
-│  │  [tool_selection] ─── map intent → tools                             │  │
+│  │  [tool_selection] ─── map intent → tools                              │  │
 │  │     │                                                                 │  │
-│  │     ├── (summary/present/absent/my_attendance)                       │  │
-│  │     │         ──► [direct_tools] ──► [response_generation] ──► END  │  │
+│  │     ├── (summary/present/absent/my_attendance)                        │  │
+│  │     │         ──► [direct_tools] ──► [response_generation] ──► END    │  │
 │  │     │                                                                 │  │
-│  │     └──────────────────────► [agent_node] ◄─────────────────────┐   │  │
-│  │                                   │                              │   │  │
-│  │                              tool_calls?                         │   │  │
-│  │                               ├── YES ──► [tool_executor] ───────┘   │  │
+│  │     └──────────────────────► [agent_node] ◄─────────────────────┐     │  │
+│  │                                   │                              │    │  │
+│  │                              tool_calls?                         │    │  │
+│  │                               ├── YES ──► [tool_executor] ───────┘    │  │
 │  │                               └── NO                                  │  │
 │  │                                    │                                  │  │
 │  │                                    ▼                                  │  │
@@ -48,14 +48,14 @@
 │                         ▼  LangGraph Tools (7 tools)                        │
 │  ┌───────────────────────────────────────────────────────────────────────┐  │
 │  │  get_present_employees()      get_absent_employees()                  │  │
-│  │  get_attendance_summary()     get_attendance_history()                  │  │
-│  │  search_employee()            get_my_attendance_today()                 │  │
-│  │  get_employee_attendance_details()                                      │  │
+│  │  get_attendance_summary()     get_attendance_history()                │  │
+│  │  search_employee()            get_my_attendance_today()               │  │
+│  │  get_employee_attendance_details()                                    │  │
 │  └────────────────────────────────┬──────────────────────────────────────┘  │
-│                                   │ HTTP (JWT Bearer)                        │
+│                                   │ HTTP (JWT Bearer)                       │
 └───────────────────────────────────┼─────────────────────────────────────────┘
                                     │
-                    ┌───────────────▼──────────────────┐
+                    ┌───────────────▼───────────────────┐
                     │   Voyon Folks HRMS Web App        │
                     │   (HRMS_BASE_URL)                 │
                     │                                   │
