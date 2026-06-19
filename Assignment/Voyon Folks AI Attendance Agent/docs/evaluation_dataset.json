@@ -1,0 +1,252 @@
+{
+  "dataset_version": "1.3",
+  "description": "Evaluation dataset for the Voyon Attendance Agent (22 cases, includes follow-up memory).",
+  "entries": [
+    {
+      "id": 1,
+      "category": "present_query",
+      "input": "Who is present today?",
+      "expected_intent": "present_query",
+      "expected_parameters": {"date": "TODAY"},
+      "expected_tools": ["get_present_employees"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["present", "employee"],
+      "notes": "Basic present query — executed via direct_tools node"
+    },
+    {
+      "id": 2,
+      "category": "absent_query",
+      "input": "Who is absent today?",
+      "expected_intent": "absent_query",
+      "expected_parameters": {"date": "TODAY"},
+      "expected_tools": ["get_absent_employees"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["absent"],
+      "notes": "Basic absent query — executed via direct_tools node"
+    },
+    {
+      "id": 3,
+      "category": "absent_query",
+      "input": "Who didn't come to office on 2026-06-15?",
+      "expected_intent": "absent_query",
+      "expected_parameters": {"date": "2026-06-15"},
+      "expected_tools": ["get_absent_employees"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["absent", "June 15"],
+      "notes": "Absent query with explicit past date"
+    },
+    {
+      "id": 4,
+      "category": "summary_query",
+      "input": "Show attendance summary for today",
+      "expected_intent": "summary_query",
+      "expected_parameters": {"date": "TODAY"},
+      "expected_tools": ["get_attendance_summary"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["present", "absent", "total"],
+      "notes": "Must call get_attendance_summary via direct_tools — NOT get_my_attendance_today"
+    },
+    {
+      "id": 5,
+      "category": "summary_query",
+      "input": "Give me an overview of attendance this Monday",
+      "expected_intent": "summary_query",
+      "expected_parameters": {"date": "LAST_MONDAY"},
+      "expected_tools": ["get_attendance_summary"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["summary"],
+      "notes": "Relative date reference — agent should resolve to correct date"
+    },
+    {
+      "id": 6,
+      "category": "history_query",
+      "input": "Show my attendance history for this month",
+      "expected_intent": "history_query",
+      "expected_parameters": {"month": "CURRENT_MONTH", "year": "CURRENT_YEAR"},
+      "expected_tools": ["get_attendance_history"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["attendance", "month"],
+      "notes": "Personal history — uses session employee_id; MonthlyAttendance API"
+    },
+    {
+      "id": 7,
+      "category": "history_query",
+      "input": "Show attendance history for employee 42 for May 2026",
+      "expected_intent": "history_query",
+      "expected_parameters": {"month": 5, "year": 2026, "employee_id": 42},
+      "expected_tools": ["get_attendance_history"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["May", "2026"],
+      "notes": "Manager querying another employee's history by numeric ID"
+    },
+    {
+      "id": 8,
+      "category": "history_query",
+      "input": "Show attendance history for Greeshma this month",
+      "expected_intent": "history_query",
+      "expected_parameters": {"employee_name": "Greeshma", "month": "CURRENT_MONTH", "year": "CURRENT_YEAR"},
+      "expected_tools": ["get_attendance_history"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["Greeshma", "present", "absent"],
+      "notes": "Name resolved inside get_attendance_history via search-employees API; may use day-by-day fallback if MonthlyAttendance fails; response must include summary counts"
+    },
+    {
+      "id": 9,
+      "category": "search_employee",
+      "input": "Find employee named Sarah",
+      "expected_intent": "search_employee",
+      "expected_parameters": {"employee_name": "Sarah"},
+      "expected_tools": ["search_employee"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["Sarah"],
+      "notes": "Uses /m/api/Employee/search-employees/{name}/1"
+    },
+    {
+      "id": 10,
+      "category": "search_employee",
+      "input": "Search for employee with code EMP042",
+      "expected_intent": "search_employee",
+      "expected_parameters": {"employee_name": "EMP042"},
+      "expected_tools": ["search_employee"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["EMP042"],
+      "notes": "Code-based search via mobile employee search API"
+    },
+    {
+      "id": 11,
+      "category": "my_attendance",
+      "input": "What is my attendance today?",
+      "expected_intent": "my_attendance",
+      "expected_parameters": {"date": "TODAY"},
+      "expected_tools": ["get_my_attendance_today"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["status"],
+      "notes": "Self-service today query — direct_tools path"
+    },
+    {
+      "id": 12,
+      "category": "my_attendance",
+      "input": "Have I checked in today?",
+      "expected_intent": "my_attendance",
+      "expected_parameters": {"date": "TODAY"},
+      "expected_tools": ["get_my_attendance_today"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["check"],
+      "notes": "Colloquial self-service query"
+    },
+    {
+      "id": 13,
+      "category": "employee_detail",
+      "input": "Show attendance details for Greeshma today",
+      "expected_intent": "employee_detail",
+      "expected_parameters": {"employee_name": "Greeshma", "date": "TODAY"},
+      "expected_tools": ["search_employee", "get_employee_attendance_details"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["Greeshma", "status"],
+      "notes": "Per-employee daily details — search then AttendanceBasedOnDate"
+    },
+    {
+      "id": 14,
+      "category": "employee_detail",
+      "input": "What time did John check in today?",
+      "expected_intent": "employee_detail",
+      "expected_parameters": {"employee_name": "John", "date": "TODAY"},
+      "expected_tools": ["search_employee", "get_employee_attendance_details"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["check"],
+      "notes": "Check-in time query for a named employee"
+    },
+    {
+      "id": 15,
+      "category": "unclear",
+      "input": "attendance",
+      "expected_intent": "unclear",
+      "expected_parameters": {},
+      "expected_tools": [],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["clarify", "help", "?"],
+      "notes": "Single-word ambiguous query — agent should ask for clarification"
+    },
+    {
+      "id": 16,
+      "category": "unclear",
+      "input": "show me the data",
+      "expected_intent": "unclear",
+      "expected_parameters": {},
+      "expected_tools": [],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["which", "what", "clarify"],
+      "notes": "Vague query — agent should ask what data"
+    },
+    {
+      "id": 17,
+      "category": "out_of_scope",
+      "input": "What is my salary this month?",
+      "expected_intent": "out_of_scope",
+      "expected_parameters": {},
+      "expected_tools": [],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["attendance", "scope"],
+      "notes": "Payroll question — outside agent scope"
+    },
+    {
+      "id": 18,
+      "category": "out_of_scope",
+      "input": "Apply for leave next week",
+      "expected_intent": "out_of_scope",
+      "expected_parameters": {},
+      "expected_tools": [],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["attendance", "scope"],
+      "notes": "Leave application — outside agent scope"
+    },
+    {
+      "id": 19,
+      "category": "present_query",
+      "input": "How many people came to work yesterday?",
+      "expected_intent": "present_query",
+      "expected_parameters": {"date": "YESTERDAY"},
+      "expected_tools": ["get_present_employees"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["present", "yesterday"],
+      "notes": "Colloquial 'came to work' maps to present query"
+    },
+    {
+      "id": 20,
+      "category": "history_query",
+      "input": "Show attendance for John Smith for last month",
+      "expected_intent": "history_query",
+      "expected_parameters": {"employee_name": "John Smith"},
+      "expected_tools": ["get_attendance_history"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["John Smith"],
+      "notes": "Single tool call — get_attendance_history resolves name internally via employee_name parameter"
+    },
+    {
+      "id": 21,
+      "category": "multi_step",
+      "input": "Show her history this month",
+      "expected_intent": "history_query",
+      "expected_parameters": {"employee_name": "Greeshma", "month": "CURRENT_MONTH"},
+      "expected_tools": ["get_attendance_history"],
+      "expected_execution": "agent_react",
+      "expected_response_contains": ["Greeshma"],
+      "notes": "Follow-up after discussing Greeshma — requires session memory (last_employee_name)",
+      "requires_prior_turn": {
+        "input": "Find employee Greeshma",
+        "expected_intent": "search_employee"
+      }
+    },
+    {
+      "id": 22,
+      "category": "error_handling",
+      "input": "Who is present on 2025-01-01?",
+      "expected_intent": "present_query",
+      "expected_parameters": {"date": "2025-01-01"},
+      "expected_tools": ["get_present_employees"],
+      "expected_execution": "direct_tools",
+      "expected_response_contains": ["no", "holiday", "present", "error"],
+      "notes": "Historical date — API may return empty or holiday response"
+    }
+  ]
+}
